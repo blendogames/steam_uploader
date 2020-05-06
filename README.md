@@ -7,6 +7,8 @@ I wanted a more visual way of managing my builds, so I made a gui wrapper around
 
 This is written in C# and a .sln solution for Visual Studio 2010 is provided. Windows only.
 
+Pre-compiled binaries are available at [my itch.io page](https://blendogames.itch.io/blendo-steam-uploader).
+
 ## License
 This source code is licensed under the zlib license. Read the license details here: [LICENSE.md](https://github.com/blendogames/steam_uploader/blob/master/license.md)
 
