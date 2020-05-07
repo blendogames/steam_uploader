@@ -58,5 +58,17 @@ namespace steam_uploader.Properties {
                 this["steampassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lastSelectedProfile {
+            get {
+                return ((string)(this["lastSelectedProfile"]));
+            }
+            set {
+                this["lastSelectedProfile"] = value;
+            }
+        }
     }
 }

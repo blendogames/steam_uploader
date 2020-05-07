@@ -99,7 +99,23 @@ namespace steam_uploader
 
             comboBox1.SelectedIndexChanged += new EventHandler(ComboBox1_SelectedIndexChanged);
 
-            comboBox1.SelectedIndex = 0;
+
+            //Attempt to load the last-selected profile from previous session.
+            if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.lastSelectedProfile))
+            {
+                int targetIndex = comboBox1.FindStringExact(Properties.Settings.Default.lastSelectedProfile);
+
+                if (targetIndex >= 0)
+                    comboBox1.SelectedIndex = targetIndex;
+                else
+                    comboBox1.SelectedIndex = 0;
+            }
+            else
+            {
+                //Default to first profile.
+                comboBox1.SelectedIndex = 0;
+            }
+
 
             dataGridView1.CellValueChanged += new DataGridViewCellEventHandler(dataGridView1_CellValueChanged);
             dataGridView1.LostFocus += new EventHandler(datagrid_LostFocus);
@@ -285,6 +301,12 @@ namespace steam_uploader
                     //Nice formatting:
                     string output = JsonConvert.SerializeObject(profiles, Formatting.Indented);
                     file.Write(output);
+                }
+
+                if (comboBox1.SelectedIndex >= 0)
+                {
+                    Properties.Settings.Default.lastSelectedProfile = comboBox1.Items[comboBox1.SelectedIndex].ToString();
+                    Properties.Settings.Default.Save();
                 }
             }
             catch (Exception err)
