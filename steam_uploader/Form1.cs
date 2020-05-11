@@ -14,8 +14,9 @@ using Newtonsoft.Json.Linq;
 
 //TODO:
 
-//File > do not generate VDF
-//File > Only generate vdf, do not upload
+// allow command-line additions.
+
+
 
 
 namespace steam_uploader
@@ -408,8 +409,20 @@ namespace steam_uploader
             profiles.RemoveAt(comboBox1.SelectedIndex);
             comboBox1.Items.RemoveAt(comboBox1.SelectedIndex);
 
+
             if (comboBox1.Items.Count > 0)
                 comboBox1.SelectedIndex = 0;
+            else
+            {
+                //No profile to select.
+
+                //Clear out the UI.
+                toolStripStatusLabel_appid.Text = "-";
+                toolStripStatusLabel_description.Text = "-";
+
+                dataGridView1.Rows.Clear();
+                dataGridView1.Refresh();
+            }
 
             AddLog(string.Format("Deleted profile: {0}", profilename));
 
@@ -572,9 +585,10 @@ namespace steam_uploader
         private void button1_Click(object sender, EventArgs e)
         {
             //Click the upload button.
+            listBox1.BackColor = Color.White;
             AddLog("-- STARTING UPLOAD --");
             AddLog(string.Empty);
-
+            
             dataGridView1.ClearSelection();
 
             //Do sanity checks.
@@ -637,7 +651,10 @@ namespace steam_uploader
 
             string pathToVDFfile = Path.Combine(Properties.Settings.Default.steamsdk_folder, "scripts", appFilename);
             string steamcmdPath = Path.Combine(Properties.Settings.Default.steamsdk_folder, "builder", "steamcmd.exe");
-            string arguments = string.Format("+login {0} {1} +run_app_build {2} +quit", Properties.Settings.Default.steamlogin, Properties.Settings.Default.steampassword, pathToVDFfile);
+            string arguments = string.Format("+login {0} {1} +run_app_build \"{2}\" +quit", Properties.Settings.Default.steamlogin, Properties.Settings.Default.steampassword, pathToVDFfile);
+
+            string displayArguments = string.Format("+run_app_build \"{0}\" +quit", pathToVDFfile);
+            AddLogInvoke(displayArguments);
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = steamcmdPath;
@@ -1039,6 +1056,7 @@ namespace steam_uploader
             ConfigForm configform = new ConfigForm();
             configform.ShowDialog();
 
+            listBox1.BackColor = Color.White;
             AddLog("Steampipe settings updated.");
         }
 
