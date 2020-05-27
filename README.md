@@ -1,5 +1,5 @@
 ﻿# Blendo steam uploader
-[![Generic badge](https://img.shields.io/badge/Download-itch.io-ff69b4.svg)](https://blendogames.itch.io/blendo-steam-uploader) [![Donate](https://img.shields.io/badge/donate-$$$-brightgreen.svg)](https://blendogames.itch.io/blendo-steam-uploader/purchase)
+[![Generic badge](https://img.shields.io/badge/Download-itch.io-red.svg)](https://blendogames.itch.io/blendo-steam-uploader) [![Donate](https://img.shields.io/badge/donate-$$$-brightgreen.svg)](https://blendogames.itch.io/blendo-steam-uploader/purchase)
 
 ## About
 I wanted a more visual way of managing my builds, so I made a gui wrapper around Steam's command-line Steampipe tools.
