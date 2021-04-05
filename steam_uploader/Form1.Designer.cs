@@ -46,8 +46,8 @@
             this.steampipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.viewBuildLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewVDFFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewBuildLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.generateVDFFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadTheBuildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +65,7 @@
             this.toolStripStatusLabel_appid = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_description = new System.Windows.Forms.ToolStripStatusLabel();
+            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -194,6 +195,7 @@
             // 
             this.steampipeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.configureToolStripMenuItem1,
+            this.loginToolStripMenuItem,
             this.toolStripMenuItem5,
             this.viewVDFFolderToolStripMenuItem,
             this.viewBuildLogsToolStripMenuItem,
@@ -216,19 +218,19 @@
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(166, 6);
             // 
-            // viewBuildLogsToolStripMenuItem
-            // 
-            this.viewBuildLogsToolStripMenuItem.Name = "viewBuildLogsToolStripMenuItem";
-            this.viewBuildLogsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.viewBuildLogsToolStripMenuItem.Text = "View build logs";
-            this.viewBuildLogsToolStripMenuItem.Click += new System.EventHandler(this.viewBuildLogsToolStripMenuItem_Click);
-            // 
             // viewVDFFolderToolStripMenuItem
             // 
             this.viewVDFFolderToolStripMenuItem.Name = "viewVDFFolderToolStripMenuItem";
             this.viewVDFFolderToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.viewVDFFolderToolStripMenuItem.Text = "View VDF folder";
             this.viewVDFFolderToolStripMenuItem.Click += new System.EventHandler(this.viewVDFFolderToolStripMenuItem_Click);
+            // 
+            // viewBuildLogsToolStripMenuItem
+            // 
+            this.viewBuildLogsToolStripMenuItem.Name = "viewBuildLogsToolStripMenuItem";
+            this.viewBuildLogsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.viewBuildLogsToolStripMenuItem.Text = "View build logs";
+            this.viewBuildLogsToolStripMenuItem.Click += new System.EventHandler(this.viewBuildLogsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -271,8 +273,8 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
@@ -283,9 +285,9 @@
             // 
             // listBox1
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
@@ -298,8 +300,8 @@
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(16, 485);
             this.button1.Name = "button1";
@@ -312,9 +314,9 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -339,9 +341,9 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(13, 66);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -403,6 +405,13 @@
             this.toolStripStatusLabel_description.Name = "toolStripStatusLabel_description";
             this.toolStripStatusLabel_description.Size = new System.Drawing.Size(15, 20);
             this.toolStripStatusLabel_description.Text = "-";
+            // 
+            // loginToolStripMenuItem
+            // 
+            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.loginToolStripMenuItem.Text = "Account login";
+            this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -471,6 +480,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem generateVDFFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadTheBuildToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
     }
 }
 

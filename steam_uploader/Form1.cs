@@ -51,7 +51,7 @@ namespace steam_uploader
                 {
                     listBox1.BackColor = Color.Pink;
                     AddLog(string.Format("ERROR: unable to find {0}", steamCmdPath));
-                    AddLog("Check the ContentBuilder folder setting in File > Steampipe > Settings");
+                    AddLog("Check the Steam SDK ContentBuilder folder setting in File > Steampipe > Settings");
                     AddLog(string.Empty);
                     foundError = true;
                 }
@@ -63,7 +63,7 @@ namespace steam_uploader
                 AddLog("Please set up your Steampipe settings. Go to File > Steampipe > Settings");
                 
                 if (string.IsNullOrWhiteSpace(Properties.Settings.Default.steamsdk_folder))
-                    AddLog("* Missing ContentBuilder folder setting.");
+                    AddLog("* Missing Steam SDK ContentBuilder folder setting.");
                 
                 if (string.IsNullOrWhiteSpace(Properties.Settings.Default.steamlogin))
                     AddLog("* Missing Steam login setting.");
@@ -250,6 +250,12 @@ namespace steam_uploader
             comboBox1.Enabled = value;
             dataGridView1.Enabled = value;
             dataGridView1.DefaultCellStyle.BackColor = value ? Color.White : Color.DarkGray;
+
+            if (value)
+            {
+                dataGridView1.CellValueChanged += new DataGridViewCellEventHandler(dataGridView1_CellValueChanged);
+                dataGridView1.LostFocus += new EventHandler(datagrid_LostFocus);
+            }
         }
 
         private string GetFileContents(string filepath)
@@ -655,6 +661,10 @@ namespace steam_uploader
 
             string displayArguments = string.Format("+run_app_build \"{0}\" +quit", pathToVDFfile);
             AddLogInvoke(displayArguments);
+            AddLogInvoke(string.Empty);
+            AddLogInvoke("Please wait...");
+            AddLogInvoke(string.Empty);
+
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = steamcmdPath;
@@ -762,12 +772,12 @@ namespace steam_uploader
             //Check contentbuilder folder.
             if (string.IsNullOrWhiteSpace(Properties.Settings.Default.steamsdk_folder))
             {
-                errorList.Add("* ContentBuilder folder has not been set.");
+                errorList.Add("* Steam SDK ContentBuilder folder has not been set.");
                 errorList.Add("  Solution: go to File > Steampipe > Settings");
             }
             else if (!Directory.Exists(Properties.Settings.Default.steamsdk_folder))
             {
-                errorList.Add(string.Format("* Unable to find ContentBuilder folder: {0}", Properties.Settings.Default.steamsdk_folder));
+                errorList.Add(string.Format("* Unable to find Steam SDK ContentBuilder folder: {0}", Properties.Settings.Default.steamsdk_folder));
                 errorList.Add("  Solution: go to File > Steampipe > Settings");
             }
             else
@@ -1071,13 +1081,13 @@ namespace steam_uploader
 
             if (string.IsNullOrWhiteSpace(Properties.Settings.Default.steamsdk_folder))
             {
-                AddLog("ERROR: no ContentBuilder folder set. Go to File > Steampipe > Settings");
+                AddLog("ERROR: no Steam SDK ContentBuilder folder set. Go to File > Steampipe > Settings");
                 return;
             }
 
             if (!Directory.Exists(Properties.Settings.Default.steamsdk_folder))
             {
-                AddLog("ERROR: unable to find ContentBuilder folder. Go to File > Steampipe > Settings");
+                AddLog("ERROR: unable to find Steam SDK ContentBuilder folder. Go to File > Steampipe > Settings");
                 return;
             }
 
@@ -1119,6 +1129,41 @@ namespace steam_uploader
                 AddLog("UPDATED: build process will upload the build.");
             else
                 AddLog("UPDATED: build process will NOT upload the build.");
+        }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.steamsdk_folder))
+            {
+                AddLog("ERROR: Steam SDK ContentBuilder folder has not been set. Go to File > Steampipe > Settings");
+                return;
+            }
+
+            if (!Directory.Exists(Properties.Settings.Default.steamsdk_folder))
+            {
+                AddLog("ERROR: invalid Steam SDK ContentBuilder folder. Go to File > Steampipe > Settings");
+                return;
+            }
+
+
+            //Attempt to run steam cmd
+            string exename = Path.Combine(Properties.Settings.Default.steamsdk_folder, "builder", "steamcmd.exe");
+
+            if (!File.Exists(exename))
+            {
+                AddLog(string.Format("ERROR: cannot find {0}", exename));
+                return;
+            }
+
+            try
+            {
+                Process.Start(exename);
+            }
+            catch (Exception err)
+            {
+                AddLog(string.Format("Error: {0}", err.Message));
+                listBox1.BackColor = Color.Pink;
+            }
         }
     }
 }
