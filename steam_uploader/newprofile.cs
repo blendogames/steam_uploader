@@ -18,11 +18,13 @@ namespace steam_uploader
             this.AcceptButton = button1;
         }
 
-        public void SetInitialValues(string defaultProfiletext, string defaultAppid, string defaultDescription, string caption)
+        public void SetInitialValues(string defaultProfiletext, string defaultAppid, string defaultDescription, string caption, string extraCommandArgs)
         {
             this.textBox_profilename.Text = defaultProfiletext;
             this.textBox_appid.Text = defaultAppid;
             this.textBox_desc.Text = defaultDescription;
+            this.textBox_extraCommandArgs.Text = extraCommandArgs;
+
             this.Text = caption;
         }
 
@@ -32,7 +34,8 @@ namespace steam_uploader
             {
                 this.textBox_profilename.Text,
                 this.textBox_appid.Text,
-                this.textBox_desc.Text
+                this.textBox_desc.Text,
+                this.textBox_extraCommandArgs.Text
             };
         }
     }

@@ -344,7 +344,7 @@ namespace steam_uploader
             listBox1.BackColor = Color.White;
 
             //Prompt for profile name.
-            string[] promptValues = NewProfilePrompt.ShowDialog(string.Empty, string.Empty, string.Empty, "Add new profile");
+            string[] promptValues = NewProfilePrompt.ShowDialog(string.Empty, string.Empty, string.Empty, "Add new profile", string.Empty);
 
             if (string.IsNullOrWhiteSpace(promptValues[0]))
             {
@@ -381,6 +381,7 @@ namespace steam_uploader
 
             toolStripStatusLabel_description.Text = promptValues[2];
             newProfile.description = promptValues[2];
+            newProfile.commandargs = promptValues[3];
 
             //newProfile.description
             profiles.Add(newProfile);
@@ -464,14 +465,15 @@ namespace steam_uploader
             string curProfilename = profiles[comboBox1.SelectedIndex].profilename;
             string curAppid = profiles[comboBox1.SelectedIndex].appid.ToString();
             string curDesc = profiles[comboBox1.SelectedIndex].description;
-
+            string curExtraCommandArgs = profiles[comboBox1.SelectedIndex].commandargs;
             
 
-            string[] promptValues = NewProfilePrompt.ShowDialog(curProfilename, curAppid, curDesc, "Modify current profile");
+            string[] promptValues = NewProfilePrompt.ShowDialog(curProfilename, curAppid, curDesc, "Modify current profile", curExtraCommandArgs);
 
             bool modified = ((curProfilename != promptValues[0])
                 || (curAppid.ToString() != promptValues[1])
-                || (curDesc != promptValues[2]));
+                || (curDesc != promptValues[2])
+                || (curExtraCommandArgs != promptValues[3]));
 
             //Set appid.
             int appIDvalue = 0;
@@ -511,6 +513,8 @@ namespace steam_uploader
 
             profiles[comboBox1.SelectedIndex].profilename = promptValues[0];
             comboBox1.Items[comboBox1.SelectedIndex] = promptValues[0];
+
+            profiles[comboBox1.SelectedIndex].commandargs = promptValues[3];
 
             if (modified)
                 AddLog("Profile settings have been updated.");
@@ -657,7 +661,14 @@ namespace steam_uploader
 
             string pathToVDFfile = Path.Combine(Properties.Settings.Default.steamsdk_folder, "scripts", appFilename);
             string steamcmdPath = Path.Combine(Properties.Settings.Default.steamsdk_folder, "builder", "steamcmd.exe");
-            string arguments = string.Format("+login {0} {1} +run_app_build \"{2}\" +quit", Properties.Settings.Default.steamlogin, Properties.Settings.Default.steampassword, pathToVDFfile);
+            string extraCommandArgs = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(profiles[selectedIndex].commandargs))
+            {
+                extraCommandArgs = profiles[selectedIndex].commandargs;
+            }
+
+            string arguments = string.Format("+login {0} {1} {2} +run_app_build \"{3}\" +quit", Properties.Settings.Default.steamlogin, Properties.Settings.Default.steampassword, extraCommandArgs, pathToVDFfile);
 
             string displayArguments = string.Format("+run_app_build \"{0}\" +quit", pathToVDFfile);
             AddLogInvoke(displayArguments);

@@ -22,6 +22,9 @@ namespace steam_uploader
         [JsonProperty("builds")]
         public ProfileBuilds[] builds { get; set; }
 
+        [JsonProperty("commandargs")]
+        public string commandargs { get; set; }
+
         public ProjectProfile()
         {
         }
