@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-//using System.Data;
 using System.Drawing;
-//using System.Linq;
-//using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
@@ -12,17 +9,55 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+// --- iconflash ---
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
+// -----------------
+
+
 //TODO:
-
 // allow command-line additions.
-
-
 
 
 namespace steam_uploader
 {
     public partial class Form1 : Form
     {
+
+        // --- iconflash ---
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
+
+        public const UInt32 FLASHW_ALL = 3;
+        public const UInt32 FLASHW_TIMERNOFG = 12;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct FLASHWINFO
+        {
+            public UInt32 cbSize;
+            public IntPtr hwnd;
+            public UInt32 dwFlags;
+            public UInt32 uCount;
+            public UInt32 dwTimeout;
+        }
+
+        public static bool FlashWindowEx(Form form)
+        {
+            IntPtr hWnd = form.Handle;
+            FLASHWINFO fInfo = new FLASHWINFO();
+
+            fInfo.cbSize = Convert.ToUInt32(Marshal.SizeOf(fInfo));
+            fInfo.hwnd = hWnd;
+            fInfo.dwFlags = FLASHW_ALL | FLASHW_TIMERNOFG;
+            fInfo.uCount = UInt32.MaxValue;
+            fInfo.dwTimeout = 0;
+
+            return FlashWindowEx(ref fInfo);
+        }
+        // -----------------
+
+
         const string PROFILE_FILE = "profiles.json";
         const string PROFILE_BACKUP = "profiles.backup";
 
@@ -766,6 +801,8 @@ namespace steam_uploader
             AddLog(string.Format("-- DONE -- (deployment time: {0})", timeStr));
             AddLog(string.Empty);
             listBox1.BackColor = Color.GreenYellow;
+
+            FlashWindowEx(this);
         }
 
         //Return FALSE if anything is bad.
