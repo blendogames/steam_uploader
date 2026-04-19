@@ -155,6 +155,45 @@ namespace steam_uploader
 
             dataGridView1.CellValueChanged += new DataGridViewCellEventHandler(dataGridView1_CellValueChanged);
             dataGridView1.LostFocus += new EventHandler(datagrid_LostFocus);
+
+
+            //Do we want to auto upload something.
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                string finalArg = string.Empty;
+                for (int i = 1; i < args.Length; i++)
+                {
+                    finalArg += string.Format("{0} ", args[i]);
+                }
+
+                finalArg  = finalArg.Trim();
+                int selectIndex = FindAutoUploadCombobox(finalArg);
+                if (selectIndex >= 0)
+                {
+                    AddLog(string.Format( "Argument '{0}' found. Uploading...", finalArg));
+                    comboBox1.SelectedIndex = selectIndex;
+                    button1_Click(null, null);
+                }
+                else
+                {
+                    AddLog( string.Format("Argument '{0}' invalid. Cannot find profile with that name.", finalArg));
+                }
+            }
+        }
+
+        private int  FindAutoUploadCombobox(string searchValue)
+        {
+            for (int i = 0; i < comboBox1.Items.Count; i++)
+            {
+                string comboString = comboBox1.Items[i].ToString();
+                if (string.Compare(searchValue, comboString, true) == 0)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         private void datagrid_LostFocus(object sender, EventArgs e)
@@ -605,15 +644,10 @@ namespace steam_uploader
 
             if (string.IsNullOrWhiteSpace(output))
             {
-                AddLog(string.Empty);
-                AddLog("No selected log found.");
                 return;
             }
 
             Clipboard.SetText(output);
-
-            AddLog(string.Empty);
-            AddLog("Copied selected log to clipboard.");
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
@@ -631,7 +665,9 @@ namespace steam_uploader
         {
             //Click the upload button.
             listBox1.BackColor = Color.White;
-            AddLog("-- STARTING UPLOAD --");
+
+            DateTime now = DateTime.Now;
+            AddLog(string.Format( "-- STARTING UPLOAD [{0}] --", now.ToString("h:mm tt")));
             AddLog(string.Empty);
             
             dataGridView1.ClearSelection();
@@ -798,7 +834,10 @@ namespace steam_uploader
             else
                 timeStr = (string.Format("{0} seconds", Math.Round(delta.TotalSeconds, 1)));
 
-            AddLog(string.Format("-- DONE -- (deployment time: {0})", timeStr));
+            DateTime now = DateTime.Now;
+            
+
+            AddLog(string.Format("-- DONE [{0}] -- (deployment time: {1})", now.ToString("h:mm tt"), timeStr));
             AddLog(string.Empty);
             listBox1.BackColor = Color.GreenYellow;
 
@@ -1102,7 +1141,7 @@ namespace steam_uploader
             }
             catch (Exception e)
             {
-                AddLog(string.Format("ERROR: failed to write {0}", filePath));
+                AddLog(string.Format("ERROR: failed to write {0} ({1})", filePath, e.Message));
                 return false;
             }
 
