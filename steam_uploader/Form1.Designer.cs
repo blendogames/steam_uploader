@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,12 +40,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteThisProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.logsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.steampipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +63,10 @@
             this.toolStripStatusLabel_appid = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_description = new System.Windows.Forms.ToolStripStatusLabel();
+            this.contextMenuLog = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copySelectedLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyEntireLogToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -74,6 +74,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -92,8 +93,6 @@
             this.addNewProfileToolStripMenuItem,
             this.profileManagementToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.logsToolStripMenuItem,
-            this.toolStripMenuItem3,
             this.steampipeToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.saveChangesExitToolStripMenuItem});
@@ -103,6 +102,7 @@
             // 
             // addNewProfileToolStripMenuItem
             // 
+            this.addNewProfileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addNewProfileToolStripMenuItem.Image")));
             this.addNewProfileToolStripMenuItem.Name = "addNewProfileToolStripMenuItem";
             this.addNewProfileToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.addNewProfileToolStripMenuItem.Text = "Add new profile";
@@ -149,48 +149,6 @@
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(179, 6);
-            // 
-            // logsToolStripMenuItem
-            // 
-            this.logsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyAllToolStripMenuItem,
-            this.copySelectionToolStripMenuItem,
-            this.toolStripMenuItem4,
-            this.clearToolStripMenuItem});
-            this.logsToolStripMenuItem.Name = "logsToolStripMenuItem";
-            this.logsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.logsToolStripMenuItem.Text = "Logs";
-            // 
-            // copyAllToolStripMenuItem
-            // 
-            this.copyAllToolStripMenuItem.Name = "copyAllToolStripMenuItem";
-            this.copyAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.copyAllToolStripMenuItem.Text = "Copy all";
-            this.copyAllToolStripMenuItem.Click += new System.EventHandler(this.copyAllToolStripMenuItem_Click);
-            // 
-            // copySelectionToolStripMenuItem
-            // 
-            this.copySelectionToolStripMenuItem.Name = "copySelectionToolStripMenuItem";
-            this.copySelectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.copySelectionToolStripMenuItem.Text = "Copy selection";
-            this.copySelectionToolStripMenuItem.Click += new System.EventHandler(this.copySelectionToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(149, 6);
-            // 
-            // clearToolStripMenuItem
-            // 
-            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.clearToolStripMenuItem.Text = "Clear";
-            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(179, 6);
             // 
             // steampipeToolStripMenuItem
             // 
@@ -296,6 +254,7 @@
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.ContextMenuStrip = this.contextMenuLog;
             this.listBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
@@ -329,14 +288,14 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
@@ -422,6 +381,39 @@
             this.toolStripStatusLabel_description.Size = new System.Drawing.Size(15, 20);
             this.toolStripStatusLabel_description.Text = "-";
             // 
+            // contextMenuLog
+            // 
+            this.contextMenuLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copySelectedLinesToolStripMenuItem,
+            this.copyEntireLogToClipboardToolStripMenuItem,
+            this.clearLogToolStripMenuItem});
+            this.contextMenuLog.Name = "contextMenuLog";
+            this.contextMenuLog.Size = new System.Drawing.Size(243, 70);
+            // 
+            // copySelectedLinesToolStripMenuItem
+            // 
+            this.copySelectedLinesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copySelectedLinesToolStripMenuItem.Image")));
+            this.copySelectedLinesToolStripMenuItem.Name = "copySelectedLinesToolStripMenuItem";
+            this.copySelectedLinesToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.copySelectedLinesToolStripMenuItem.Text = "Copy selected lines to clipboard";
+            this.copySelectedLinesToolStripMenuItem.Click += new System.EventHandler(this.copySelectedLinesToolStripMenuItem_Click);
+            // 
+            // copyEntireLogToClipboardToolStripMenuItem
+            // 
+            this.copyEntireLogToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyEntireLogToClipboardToolStripMenuItem.Image")));
+            this.copyEntireLogToClipboardToolStripMenuItem.Name = "copyEntireLogToClipboardToolStripMenuItem";
+            this.copyEntireLogToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.copyEntireLogToClipboardToolStripMenuItem.Text = "Copy entire log to clipboard";
+            this.copyEntireLogToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyEntireLogToClipboardToolStripMenuItem_Click);
+            // 
+            // clearLogToolStripMenuItem
+            // 
+            this.clearLogToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearLogToolStripMenuItem.Image")));
+            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.clearLogToolStripMenuItem.Text = "Clear log";
+            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,6 +437,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuLog.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -466,8 +459,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem saveChangesExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_description;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_appid;
@@ -475,10 +466,6 @@
         private System.Windows.Forms.ToolStripMenuItem openProfileFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem deleteThisProfileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyAllToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copySelectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripMenuItem steampipeToolStripMenuItem;
@@ -490,6 +477,10 @@
         private System.Windows.Forms.ToolStripMenuItem generateVDFFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadTheBuildToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuLog;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedLinesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyEntireLogToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
     }
 }
 

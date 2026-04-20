@@ -515,7 +515,7 @@ namespace steam_uploader
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Blendo steam uploader\nby Brendon Chung\n\nUse this program to upload projects to Steam. This is a graphical GUI wrapper around Steam's Steampipe command-line tools.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Blendo steam uploader\nby Brendon Chung\n\nUse this program to upload projects to Steam. This is a graphical GUI wrapper around Steam's Steampipe command-line tools.\n\nNotes:\n- To upload, log into your Steam account via:\nFile > Steampipe > Account login > type in: login\n\n- A command-line argument can be used to automatically upload a build. Example: 'steam_uploader.exe Astro Game' will automatically upload the build in the profile named Astro Game.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void configureToolStripMenuItem_Click(object sender, EventArgs e)
@@ -611,49 +611,55 @@ namespace steam_uploader
 
         private void copyAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listBox1.BackColor = Color.White;
+            //deprecated.
 
-            string output = string.Empty;
-
-            foreach (object item in listBox1.Items)
-                output += item.ToString() + "\r\n";
-
-            if (string.IsNullOrWhiteSpace(output))
-            {
-                AddLog(string.Empty);
-                AddLog("No log found.");
-                return;
-            }
-
-            Clipboard.SetText(output);
-
-            AddLog(string.Empty);
-            AddLog("Copied entire log to clipboard.");
+            //listBox1.BackColor = Color.White;
+            //
+            //string output = string.Empty;
+            //
+            //foreach (object item in listBox1.Items)
+            //    output += item.ToString() + "\r\n";
+            //
+            //if (string.IsNullOrWhiteSpace(output))
+            //{
+            //    AddLog(string.Empty);
+            //    AddLog("No log found.");
+            //    return;
+            //}
+            //
+            //Clipboard.SetText(output);
+            //
+            //AddLog(string.Empty);
+            //AddLog("Copied entire log to clipboard.");
         }
 
         private void copySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listBox1.BackColor = Color.White;
+            //deprecated.
 
-            string output = string.Empty;
-
-            foreach (object item in listBox1.SelectedItems)
-            {
-                output += item.ToString() + "\r\n";
-            }
-
-            if (string.IsNullOrWhiteSpace(output))
-            {
-                return;
-            }
-
-            Clipboard.SetText(output);
+            //listBox1.BackColor = Color.White;
+            //
+            //string output = string.Empty;
+            //
+            //foreach (object item in listBox1.SelectedItems)
+            //{
+            //    output += item.ToString() + "\r\n";
+            //}
+            //
+            //if (string.IsNullOrWhiteSpace(output))
+            //{
+            //    return;
+            //}
+            //
+            //Clipboard.SetText(output);
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            listBox1.BackColor = Color.White;
+            //deprecated.
+
+            //listBox1.Items.Clear();
+            //listBox1.BackColor = Color.White;
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -1251,6 +1257,53 @@ namespace steam_uploader
                 AddLog(string.Format("Error: {0}", err.Message));
                 listBox1.BackColor = Color.Pink;
             }
+        }
+
+        private void copySelectedLinesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Copy selected to log.
+            listBox1.BackColor = Color.White;
+
+            string output = string.Empty;
+
+            foreach (object item in listBox1.SelectedItems)
+            {
+                output += item.ToString() + "\r\n";
+            }
+
+            if (string.IsNullOrWhiteSpace(output))
+            {
+                return;
+            }
+
+            Clipboard.SetText(output);
+        }
+
+        private void copyEntireLogToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Copy entire log.
+            listBox1.BackColor = Color.White;
+
+            string output = string.Empty;
+
+            foreach (object item in listBox1.Items)
+                output += item.ToString() + "\r\n";
+
+            if (string.IsNullOrWhiteSpace(output))
+            {
+                AddLog(string.Empty);
+                AddLog("No log found.");
+                return;
+            }
+
+            Clipboard.SetText(output);
+        }
+
+        private void clearLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Clear log.
+            listBox1.Items.Clear();
+            listBox1.BackColor = Color.White;
         }
     }
 }
