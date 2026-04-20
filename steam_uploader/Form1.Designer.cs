@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,8 +55,6 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -67,6 +65,10 @@
             this.copySelectedLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyEntireLogToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -94,6 +96,7 @@
             this.profileManagementToolStripMenuItem,
             this.toolStripMenuItem1,
             this.steampipeToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.aboutToolStripMenuItem,
             this.saveChangesExitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -168,40 +171,40 @@
             // configureToolStripMenuItem1
             // 
             this.configureToolStripMenuItem1.Name = "configureToolStripMenuItem1";
-            this.configureToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
+            this.configureToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.configureToolStripMenuItem1.Text = "Settings";
             this.configureToolStripMenuItem1.Click += new System.EventHandler(this.configureToolStripMenuItem1_Click);
             // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loginToolStripMenuItem.Text = "Account login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(166, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
             // 
             // viewVDFFolderToolStripMenuItem
             // 
             this.viewVDFFolderToolStripMenuItem.Name = "viewVDFFolderToolStripMenuItem";
-            this.viewVDFFolderToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.viewVDFFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewVDFFolderToolStripMenuItem.Text = "View VDF folder";
             this.viewVDFFolderToolStripMenuItem.Click += new System.EventHandler(this.viewVDFFolderToolStripMenuItem_Click);
             // 
             // viewBuildLogsToolStripMenuItem
             // 
             this.viewBuildLogsToolStripMenuItem.Name = "viewBuildLogsToolStripMenuItem";
-            this.viewBuildLogsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.viewBuildLogsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewBuildLogsToolStripMenuItem.Text = "View build logs";
             this.viewBuildLogsToolStripMenuItem.Click += new System.EventHandler(this.viewBuildLogsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(166, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
             // 
             // generateVDFFilesToolStripMenuItem
             // 
@@ -209,7 +212,7 @@
             this.generateVDFFilesToolStripMenuItem.CheckOnClick = true;
             this.generateVDFFilesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.generateVDFFilesToolStripMenuItem.Name = "generateVDFFilesToolStripMenuItem";
-            this.generateVDFFilesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.generateVDFFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.generateVDFFilesToolStripMenuItem.Text = "Generate VDF files";
             this.generateVDFFilesToolStripMenuItem.Click += new System.EventHandler(this.generateVDFFilesToolStripMenuItem_Click);
             // 
@@ -219,7 +222,7 @@
             this.uploadTheBuildToolStripMenuItem.CheckOnClick = true;
             this.uploadTheBuildToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uploadTheBuildToolStripMenuItem.Name = "uploadTheBuildToolStripMenuItem";
-            this.uploadTheBuildToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.uploadTheBuildToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uploadTheBuildToolStripMenuItem.Text = "Upload the build";
             this.uploadTheBuildToolStripMenuItem.Click += new System.EventHandler(this.uploadTheBuildToolStripMenuItem_Click);
             // 
@@ -261,7 +264,7 @@
             this.listBox1.Location = new System.Drawing.Point(3, 3);
             this.listBox1.Name = "listBox1";
             this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox1.Size = new System.Drawing.Size(653, 276);
+            this.listBox1.Size = new System.Drawing.Size(653, 212);
             this.listBox1.TabIndex = 2;
             this.listBox1.TabStop = false;
             // 
@@ -286,33 +289,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3,
             this.Column1,
             this.Column2});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(653, 120);
+            this.dataGridView1.Size = new System.Drawing.Size(653, 181);
             this.dataGridView1.TabIndex = 4;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Depot ID";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Local folder";
-            this.Column2.Name = "Column2";
             // 
             // splitContainer1
             // 
@@ -331,7 +324,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listBox1);
             this.splitContainer1.Size = new System.Drawing.Size(659, 419);
-            this.splitContainer1.SplitterDistance = 126;
+            this.splitContainer1.SplitterDistance = 187;
             this.splitContainer1.TabIndex = 100;
             this.splitContainer1.TabStop = false;
             // 
@@ -414,6 +407,30 @@
             this.clearLogToolStripMenuItem.Text = "Clear log";
             this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(179, 6);
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Upload";
+            this.Column3.Name = "Column3";
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column3.Width = 50;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Depot ID";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "Local folder";
+            this.Column2.Name = "Column2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -451,8 +468,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStripMenuItem addNewProfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem profileManagementToolStripMenuItem;
@@ -481,6 +496,10 @@
         private System.Windows.Forms.ToolStripMenuItem copySelectedLinesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyEntireLogToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
 

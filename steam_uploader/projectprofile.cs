@@ -32,6 +32,9 @@ namespace steam_uploader
 
     class ProfileBuilds
     {
+        [JsonProperty("upload")]
+        public bool upload { get; set; }
+
         [JsonProperty("depotid")]
         public int depotid { get; set; }
 

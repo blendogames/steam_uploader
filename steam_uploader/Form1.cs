@@ -61,6 +61,10 @@ namespace steam_uploader
         const string PROFILE_FILE = "profiles.json";
         const string PROFILE_BACKUP = "profiles.backup";
 
+        const int COL_UPLOAD = 0;
+        const int COL_DEPOTID = 1;
+        const int COL_FOLDERNAME = 2;
+
         List<ProjectProfile> profiles;
         int lastSelectedIndex = -1;
 
@@ -92,6 +96,7 @@ namespace steam_uploader
                 }
             }
 
+            //Check steamSDK settings.
             if (string.IsNullOrWhiteSpace(Properties.Settings.Default.steamsdk_folder) || string.IsNullOrWhiteSpace(Properties.Settings.Default.steamlogin) || string.IsNullOrWhiteSpace(Properties.Settings.Default.steampassword))
             {
                 listBox1.BackColor = Color.Pink;
@@ -123,6 +128,7 @@ namespace steam_uploader
             
             if (!foundError)
             {
+                //No errors found.
                 AddLog("-- READY TO UPLOAD --");
                 AddLog(string.Empty);
             }            
@@ -155,9 +161,10 @@ namespace steam_uploader
 
             dataGridView1.CellValueChanged += new DataGridViewCellEventHandler(dataGridView1_CellValueChanged);
             dataGridView1.LostFocus += new EventHandler(datagrid_LostFocus);
+            dataGridView1.CurrentCellDirtyStateChanged += DataGridView1_CurrentCellDirtyStateChanged;
 
 
-            //Do we want to auto upload something.
+            //Do we want to auto upload something. This is the logic for the command-line parameter.
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length > 1)
             {
@@ -181,6 +188,8 @@ namespace steam_uploader
                 }
             }
         }
+
+        
 
         private int  FindAutoUploadCombobox(string searchValue)
         {
@@ -207,7 +216,7 @@ namespace steam_uploader
 
             //Gets called even if user chooses same value again. Only update when user actually changes value.
             if (lastSelectedIndex == comboBox1.SelectedIndex)
-                return; 
+                return;
 
             lastSelectedIndex = comboBox1.SelectedIndex;
 
@@ -224,22 +233,37 @@ namespace steam_uploader
             if (profiles[comboBox1.SelectedIndex].builds.Length <= 0)
                 return;
 
+            int uploadCount = 0;
+
             for (int i = 0; i < profiles[comboBox1.SelectedIndex].builds.Length; i++)
             {
                 //Populate the data grid fields.
                 DataGridViewRow row = new DataGridViewRow();
                 row.CreateCells(dataGridView1);  // this line was missing
-                row.Cells[0].Value = profiles[comboBox1.SelectedIndex].builds[i].depotid;
-                row.Cells[1].Value = profiles[comboBox1.SelectedIndex].builds[i].folder;
+                row.Cells[COL_UPLOAD].Value = profiles[comboBox1.SelectedIndex].builds[i].upload;
+                row.Cells[COL_DEPOTID].Value = profiles[comboBox1.SelectedIndex].builds[i].depotid;
+                row.Cells[COL_FOLDERNAME].Value = profiles[comboBox1.SelectedIndex].builds[i].folder;
                 dataGridView1.Rows.Add(row);
 
                 if (profiles[comboBox1.SelectedIndex].builds[i].depotid <= 0)
                 {
                     AddLog(string.Format("ERROR: {0} is not a valid Depot ID value.", profiles[comboBox1.SelectedIndex].builds[i].depotid));
                 }
+
+                if (profiles[comboBox1.SelectedIndex].builds[i].upload)
+                {
+                    uploadCount++;
+                }
             }
 
-            
+            //if all checkboxes are off, then turn them all on
+            if (uploadCount <= 0)
+            {
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+                    dataGridView1.Rows[i].Cells[COL_UPLOAD].Value = true;
+                }
+            }
         }
 
         void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -251,33 +275,57 @@ namespace steam_uploader
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                if (dataGridView1.Rows[i].Cells[0].Value == null || dataGridView1.Rows[i].Cells[1].Value == null)
+                if (dataGridView1.Rows[i].Cells[COL_DEPOTID].Value == null || dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value == null)
                 {
                     continue;
                 }
 
-                if (string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells[0].Value.ToString()) || string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells[1].Value.ToString()))
+                if (string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells[COL_DEPOTID].Value.ToString()) || string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value.ToString()))
                 {
                     continue;
                 }
 
                 ProfileBuilds newBuild = new ProfileBuilds();
 
+                //Set the depot id value.
                 int depotValue = 0;
-                if (!int.TryParse(dataGridView1.Rows[i].Cells[0].Value.ToString(), out depotValue))
+                if (!int.TryParse(dataGridView1.Rows[i].Cells[COL_DEPOTID].Value.ToString(), out depotValue))
                 {
-                    AddLog(string.Format("ERROR: {0} is not a valid Depot ID value.", dataGridView1.Rows[i].Cells[0].Value.ToString()));
+                    AddLog(string.Format("ERROR: {0} is not a valid Depot ID value.", dataGridView1.Rows[i].Cells[COL_DEPOTID].Value.ToString()));
                 }
                 else
                 {
                     newBuild.depotid = depotValue;
-                }                
+                }
 
-                newBuild.folder = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                //Set the upload checkbox value.
+                bool uploadValue;
+                if (!bool.TryParse(dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString(), out uploadValue))
+                {
+                    AddLog(string.Format("ERROR: {0} is not a valid upload value.", dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString()));
+                }
+                else
+                {
+                    newBuild.upload = uploadValue;
+                }
+                
+
+                newBuild.folder = dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value.ToString();
                 buildList.Add(newBuild);
             }
 
             profiles[comboBox1.SelectedIndex].builds = buildList.ToArray();
+        }
+
+        private void DataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            //Hack to make the checkbox trigger the cell changed event.
+            //We do this because by default, the checkbox change technically doesn't exit or deactivate the cell,
+            //so the cell change call never happens. So we do a Dirty check on the checkbox instead.
+            if (dataGridView1.CurrentCell.ColumnIndex == COL_UPLOAD)
+            {
+                dataGridView1_CellValueChanged(null, new DataGridViewCellEventArgs(dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex));
+            }
         }
 
         private bool LoadProfiles(out List<ProjectProfile> output)
@@ -909,12 +957,19 @@ namespace steam_uploader
             //Check the depot id numbers.
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-                if (dataGridView1.Rows[i].Cells[0].Value == null)
+
+                bool uploadValue;
+                bool.TryParse(dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString(), out uploadValue);
+                if (!uploadValue)
+                    continue;
+
+
+                if (dataGridView1.Rows[i].Cells[COL_DEPOTID].Value == null)
                 {
                     errorList.Add(string.Format("* Missing Depot ID value in row {0}.", (i + 1)));
                     errorList.Add(string.Format("  Solution: add Depot ID to row {0}.", (i+1)));
                 }
-                else if (string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells[0].Value.ToString()))
+                else if (string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells[COL_DEPOTID].Value.ToString()))
                 {
                     errorList.Add(string.Format("* Missing Depot ID value in row {0}.", (i + 1)));
                     errorList.Add(string.Format("  Solution: add Depot ID to row {0}.", (i + 1)));
@@ -922,9 +977,9 @@ namespace steam_uploader
                 else
                 {
                     int outDepotid = 0;
-                    if (!int.TryParse(dataGridView1.Rows[i].Cells[0].Value.ToString(), out outDepotid))
+                    if (!int.TryParse(dataGridView1.Rows[i].Cells[COL_DEPOTID].Value.ToString(), out outDepotid))
                     {
-                        errorList.Add(string.Format("* Invalid Depot ID value in row {0}: {1}", (i + 1), dataGridView1.Rows[i].Cells[0].Value.ToString()));
+                        errorList.Add(string.Format("* Invalid Depot ID value in row {0}: {1}", (i + 1), dataGridView1.Rows[i].Cells[COL_DEPOTID].Value.ToString()));
                         errorList.Add(string.Format("  Solution: add valid Depot ID to row {0}.", (i + 1)));
                     }
                 }
@@ -933,22 +988,27 @@ namespace steam_uploader
             //Check the depot folders.
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-                if (dataGridView1.Rows[i].Cells[1].Value == null)
+                bool uploadValue;
+                bool.TryParse(dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString(), out uploadValue);
+                if (!uploadValue)
+                    continue;
+
+                if (dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value == null)
                 {
                     errorList.Add(string.Format("* Missing Local Folder value in row {0}.", (i + 1)));
                     errorList.Add(string.Format("  Solution: add Local Folder to row {0}.", (i + 1)));
                 }
-                else if (string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells[1].Value.ToString()))
+                else if (string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value.ToString()))
                 {
                     errorList.Add(string.Format("* Missing Local Folder value in row {0}.", (i + 1)));
                     errorList.Add(string.Format("  Solution: add Local Folder to row {0}.", (i + 1)));
                 }
                 else
                 {
-                    if (!Directory.Exists(dataGridView1.Rows[i].Cells[1].Value.ToString()))
+                    if (!Directory.Exists(dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value.ToString()))
                     {
-                        errorList.Add(string.Format("* Unable to find Local Folder in row {0}: {1}", (i + 1), dataGridView1.Rows[i].Cells[1].Value.ToString()));
-                        errorList.Add(string.Format("  Solution: verify existence of folder: {0}", dataGridView1.Rows[i].Cells[1].Value.ToString()));
+                        errorList.Add(string.Format("* Unable to find Local Folder in row {0}: {1}", (i + 1), dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value.ToString()));
+                        errorList.Add(string.Format("  Solution: verify existence of folder: {0}", dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value.ToString()));
                     }
                 }
             }          
@@ -1011,7 +1071,13 @@ namespace steam_uploader
 
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-                string depotID = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                //Check the upload checkbox.
+                bool uploadValue;
+                bool.TryParse(dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString(), out uploadValue);
+                if (!uploadValue)
+                    continue;
+
+                string depotID = dataGridView1.Rows[i].Cells[COL_DEPOTID].Value.ToString();
                 string depotVDFPath = Path.Combine(Properties.Settings.Default.steamsdk_folder, "scripts", GetDepotFileName(depotID));
                 app_vdf_contents += string.Format("        \"{0}\" \"{1}\"\n", depotID, depotVDFPath);
             }
@@ -1043,8 +1109,15 @@ namespace steam_uploader
         {
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-                string depotID = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                string contentFolder = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                //Check the upload checkbox.
+                bool uploadValue;
+                bool.TryParse(dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString(), out uploadValue);
+                if (!uploadValue)
+                    continue;
+
+
+                string depotID = dataGridView1.Rows[i].Cells[COL_DEPOTID].Value.ToString();
+                string contentFolder = dataGridView1.Rows[i].Cells[COL_FOLDERNAME].Value.ToString();
 
                 string depot_vdf_contents = "\"DepotBuildConfig\"\n";
                 depot_vdf_contents += "{\n";
