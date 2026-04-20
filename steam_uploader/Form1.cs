@@ -563,7 +563,7 @@ namespace steam_uploader
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Blendo steam uploader\nby Brendon Chung\n\nUse this program to upload projects to Steam. This is a graphical GUI wrapper around Steam's Steampipe command-line tools.\n\nNotes:\n- To upload, log into your Steam account via:\nFile > Steampipe > Account login > type in: login\n\n- A command-line argument can be used to automatically upload a build. Example: 'steam_uploader.exe Astro Game' will automatically upload the build in the profile named Astro Game.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Blendo steam uploader\nby Brendon Chung\n\nUse this program to upload projects to Steam. This is a graphical GUI wrapper around Steam's Steampipe command-line tools.\n\nNotes:\n• To upload, log into your Steam account via:\nFile > Steampipe > Account login > type in: login\n\n• A command-line argument can be used to automatically upload a build. Example: 'steam_uploader.exe Astro Game' will automatically upload the build in the profile named Astro Game.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void configureToolStripMenuItem_Click(object sender, EventArgs e)
