@@ -300,13 +300,20 @@ namespace steam_uploader
 
                 //Set the upload checkbox value.
                 bool uploadValue;
-                if (!bool.TryParse(dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString(), out uploadValue))
+                if (dataGridView1.Rows[i].Cells[COL_UPLOAD].Value != null)
                 {
-                    AddLog(string.Format("ERROR: {0} is not a valid upload value.", dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString()));
+                    if (!bool.TryParse(dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString(), out uploadValue))
+                    {
+                        AddLog(string.Format("ERROR: {0} is not a valid upload value.", dataGridView1.Rows[i].Cells[COL_UPLOAD].Value.ToString()));
+                    }
+                    else
+                    {
+                        newBuild.upload = uploadValue;
+                    }
                 }
                 else
                 {
-                    newBuild.upload = uploadValue;
+                    newBuild.upload = false;
                 }
                 
 
