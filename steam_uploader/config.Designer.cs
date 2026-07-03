@@ -37,6 +37,7 @@
             this.textBox_password = new System.Windows.Forms.TextBox();
             this.textBox_login = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,9 +45,10 @@
             // 
             this.textBox_sdkfolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_sdkfolder.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_sdkfolder.Location = new System.Drawing.Point(23, 39);
             this.textBox_sdkfolder.Name = "textBox_sdkfolder";
-            this.textBox_sdkfolder.Size = new System.Drawing.Size(486, 20);
+            this.textBox_sdkfolder.Size = new System.Drawing.Size(486, 22);
             this.textBox_sdkfolder.TabIndex = 0;
             // 
             // label1
@@ -129,13 +131,24 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(16, 190);
+            this.button1.Location = new System.Drawing.Point(16, 202);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(499, 37);
+            this.button1.Size = new System.Drawing.Size(499, 47);
             this.button1.TabIndex = 3;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(288, 23);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(19, 13);
+            this.linkLabel1.TabIndex = 4;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = " ? ";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // ConfigForm
             // 
@@ -143,6 +156,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(527, 261);
             this.ControlBox = false;
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -170,5 +184,6 @@
         private System.Windows.Forms.TextBox textBox_login;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

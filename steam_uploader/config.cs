@@ -38,5 +38,14 @@ namespace steam_uploader
             Properties.Settings.Default.steampassword = string.Empty;
             Properties.Settings.Default.Save();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://partner.steamgames.com/doc/sdk",
+                UseShellExecute = true
+            });            
+        }
     }
 }

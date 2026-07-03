@@ -163,6 +163,7 @@ namespace steam_uploader
             dataGridView1.LostFocus += new EventHandler(datagrid_LostFocus);
             dataGridView1.CurrentCellDirtyStateChanged += DataGridView1_CurrentCellDirtyStateChanged;
 
+            listBox1.KeyDown += ListBox1_KeyDown;
 
             //Do we want to auto upload something. This is the logic for the command-line parameter.
             string[] args = Environment.GetCommandLineArgs();
@@ -189,7 +190,14 @@ namespace steam_uploader
             }
         }
 
-        
+        private void ListBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.C && listBox1.SelectedItem != null)
+            {
+                copySelectedLinesToolStripMenuItem_Click(null, null);
+            }
+            
+        }
 
         private int  FindAutoUploadCombobox(string searchValue)
         {
@@ -570,7 +578,7 @@ namespace steam_uploader
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Blendo steam uploader\nby Brendon Chung\n\nUse this program to upload projects to Steam. This is a graphical GUI wrapper around Steam's Steampipe command-line tools.\n\nNotes:\n• To upload, log into your Steam account via:\nFile > Steampipe > Account login > type in: login\n\n• A command-line argument can be used to automatically upload a build. Example: 'steam_uploader.exe Astro Game' will automatically upload the build in the profile named Astro Game.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Blendo steam uploader\nby Brendon Chung\n\nUse this program to upload projects to Steam. This is a graphical GUI wrapper around Steam's Steampipe command-line tools.\n\nNotes:\n• You'll need to log into your Steam account via:\nFile > Steampipe > Account login > type in: login\n\n• A command-line argument can be used to automatically upload a build. Example: 'steam_uploader.exe Astro Game' will automatically upload the build in the profile named Astro Game.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void configureToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1308,13 +1316,15 @@ namespace steam_uploader
         {
             if (string.IsNullOrWhiteSpace(Properties.Settings.Default.steamsdk_folder))
             {
-                AddLog("ERROR: Steam SDK ContentBuilder folder has not been set. Go to File > Steampipe > Settings");
+                AddLog("ERROR: Steam SDK ContentBuilder folder has not been set.");
+                AddLog("Go to File > Steampipe > Settings");
                 return;
             }
 
             if (!Directory.Exists(Properties.Settings.Default.steamsdk_folder))
             {
-                AddLog("ERROR: invalid Steam SDK ContentBuilder folder. Go to File > Steampipe > Settings");
+                AddLog("ERROR: invalid Steam SDK ContentBuilder folder.");
+                AddLog("Go to File > Steampipe > Settings");
                 return;
             }
 
@@ -1327,6 +1337,9 @@ namespace steam_uploader
                 AddLog(string.Format("ERROR: cannot find {0}", exename));
                 return;
             }
+
+            AddLog(string.Empty);
+            AddLog("At the Steam prompt, type in: login");
 
             try
             {
