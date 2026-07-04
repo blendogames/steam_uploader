@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Text;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -823,6 +824,9 @@ namespace steam_uploader
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.CreateNoWindow = true;
+
+            startInfo.StandardOutputEncoding = Encoding.UTF8;
+
             Process proc = new Process();
 
             bool hasError = false;

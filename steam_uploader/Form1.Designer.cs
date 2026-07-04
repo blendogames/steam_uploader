@@ -49,34 +49,34 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.generateVDFFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadTheBuildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveChangesExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.contextMenuLog = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copySelectedLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyEntireLogToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_appid = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_description = new System.Windows.Forms.ToolStripStatusLabel();
-            this.contextMenuLog = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copySelectedLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyEntireLogToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.contextMenuLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -171,40 +171,40 @@
             // configureToolStripMenuItem1
             // 
             this.configureToolStripMenuItem1.Name = "configureToolStripMenuItem1";
-            this.configureToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.configureToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
             this.configureToolStripMenuItem1.Text = "Settings";
             this.configureToolStripMenuItem1.Click += new System.EventHandler(this.configureToolStripMenuItem1_Click);
             // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.loginToolStripMenuItem.Text = "Account login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(166, 6);
             // 
             // viewVDFFolderToolStripMenuItem
             // 
             this.viewVDFFolderToolStripMenuItem.Name = "viewVDFFolderToolStripMenuItem";
-            this.viewVDFFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewVDFFolderToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.viewVDFFolderToolStripMenuItem.Text = "View VDF folder";
             this.viewVDFFolderToolStripMenuItem.Click += new System.EventHandler(this.viewVDFFolderToolStripMenuItem_Click);
             // 
             // viewBuildLogsToolStripMenuItem
             // 
             this.viewBuildLogsToolStripMenuItem.Name = "viewBuildLogsToolStripMenuItem";
-            this.viewBuildLogsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewBuildLogsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.viewBuildLogsToolStripMenuItem.Text = "View build logs";
             this.viewBuildLogsToolStripMenuItem.Click += new System.EventHandler(this.viewBuildLogsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(166, 6);
             // 
             // generateVDFFilesToolStripMenuItem
             // 
@@ -212,7 +212,7 @@
             this.generateVDFFilesToolStripMenuItem.CheckOnClick = true;
             this.generateVDFFilesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.generateVDFFilesToolStripMenuItem.Name = "generateVDFFilesToolStripMenuItem";
-            this.generateVDFFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.generateVDFFilesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.generateVDFFilesToolStripMenuItem.Text = "Generate VDF files";
             this.generateVDFFilesToolStripMenuItem.Click += new System.EventHandler(this.generateVDFFilesToolStripMenuItem_Click);
             // 
@@ -222,9 +222,14 @@
             this.uploadTheBuildToolStripMenuItem.CheckOnClick = true;
             this.uploadTheBuildToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uploadTheBuildToolStripMenuItem.Name = "uploadTheBuildToolStripMenuItem";
-            this.uploadTheBuildToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uploadTheBuildToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.uploadTheBuildToolStripMenuItem.Text = "Upload the build";
             this.uploadTheBuildToolStripMenuItem.Click += new System.EventHandler(this.uploadTheBuildToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(179, 6);
             // 
             // aboutToolStripMenuItem
             // 
@@ -258,15 +263,48 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.ContextMenuStrip = this.contextMenuLog;
-            this.listBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
+            this.listBox1.ItemHeight = 15;
             this.listBox1.Location = new System.Drawing.Point(3, 3);
             this.listBox1.Name = "listBox1";
             this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox1.Size = new System.Drawing.Size(653, 212);
+            this.listBox1.Size = new System.Drawing.Size(653, 199);
             this.listBox1.TabIndex = 2;
             this.listBox1.TabStop = false;
+            // 
+            // contextMenuLog
+            // 
+            this.contextMenuLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copySelectedLinesToolStripMenuItem,
+            this.copyEntireLogToClipboardToolStripMenuItem,
+            this.clearLogToolStripMenuItem});
+            this.contextMenuLog.Name = "contextMenuLog";
+            this.contextMenuLog.Size = new System.Drawing.Size(243, 70);
+            // 
+            // copySelectedLinesToolStripMenuItem
+            // 
+            this.copySelectedLinesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copySelectedLinesToolStripMenuItem.Image")));
+            this.copySelectedLinesToolStripMenuItem.Name = "copySelectedLinesToolStripMenuItem";
+            this.copySelectedLinesToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.copySelectedLinesToolStripMenuItem.Text = "Copy selected lines to clipboard";
+            this.copySelectedLinesToolStripMenuItem.Click += new System.EventHandler(this.copySelectedLinesToolStripMenuItem_Click);
+            // 
+            // copyEntireLogToClipboardToolStripMenuItem
+            // 
+            this.copyEntireLogToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyEntireLogToClipboardToolStripMenuItem.Image")));
+            this.copyEntireLogToClipboardToolStripMenuItem.Name = "copyEntireLogToClipboardToolStripMenuItem";
+            this.copyEntireLogToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.copyEntireLogToClipboardToolStripMenuItem.Text = "Copy entire log to clipboard";
+            this.copyEntireLogToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyEntireLogToClipboardToolStripMenuItem_Click);
+            // 
+            // clearLogToolStripMenuItem
+            // 
+            this.clearLogToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearLogToolStripMenuItem.Image")));
+            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.clearLogToolStripMenuItem.Text = "Clear log";
+            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
             // 
             // button1
             // 
@@ -306,6 +344,25 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(653, 181);
             this.dataGridView1.TabIndex = 4;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Upload";
+            this.Column3.Name = "Column3";
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column3.Width = 50;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Depot ID";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "Local folder";
+            this.Column2.Name = "Column2";
             // 
             // splitContainer1
             // 
@@ -374,63 +431,6 @@
             this.toolStripStatusLabel_description.Size = new System.Drawing.Size(15, 20);
             this.toolStripStatusLabel_description.Text = "-";
             // 
-            // contextMenuLog
-            // 
-            this.contextMenuLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copySelectedLinesToolStripMenuItem,
-            this.copyEntireLogToClipboardToolStripMenuItem,
-            this.clearLogToolStripMenuItem});
-            this.contextMenuLog.Name = "contextMenuLog";
-            this.contextMenuLog.Size = new System.Drawing.Size(243, 70);
-            // 
-            // copySelectedLinesToolStripMenuItem
-            // 
-            this.copySelectedLinesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copySelectedLinesToolStripMenuItem.Image")));
-            this.copySelectedLinesToolStripMenuItem.Name = "copySelectedLinesToolStripMenuItem";
-            this.copySelectedLinesToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.copySelectedLinesToolStripMenuItem.Text = "Copy selected lines to clipboard";
-            this.copySelectedLinesToolStripMenuItem.Click += new System.EventHandler(this.copySelectedLinesToolStripMenuItem_Click);
-            // 
-            // copyEntireLogToClipboardToolStripMenuItem
-            // 
-            this.copyEntireLogToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyEntireLogToClipboardToolStripMenuItem.Image")));
-            this.copyEntireLogToClipboardToolStripMenuItem.Name = "copyEntireLogToClipboardToolStripMenuItem";
-            this.copyEntireLogToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.copyEntireLogToClipboardToolStripMenuItem.Text = "Copy entire log to clipboard";
-            this.copyEntireLogToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyEntireLogToClipboardToolStripMenuItem_Click);
-            // 
-            // clearLogToolStripMenuItem
-            // 
-            this.clearLogToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearLogToolStripMenuItem.Image")));
-            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
-            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.clearLogToolStripMenuItem.Text = "Clear log";
-            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(179, 6);
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Upload";
-            this.Column3.Name = "Column3";
-            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column3.Width = 50;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Depot ID";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Local folder";
-            this.Column2.Name = "Column2";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,6 +447,7 @@
             this.Text = "Blendo steam uploader";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuLog.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -454,7 +455,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.contextMenuLog.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
